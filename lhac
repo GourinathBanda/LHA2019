@@ -1,8 +1,0 @@
-#!/bin/sh
-
-if (test $1 = "-e")
-then
-   make --always-make -f makefile_NewDriver INPUTLHAFILE=$2
-else
-   make --always-make -f makefileWithNoEvents_NewDriver INPUTLHAFILE=$1
-fi
