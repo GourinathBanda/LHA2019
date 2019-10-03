@@ -1,0 +1,75 @@
+{Reading /home/gourinath/Work/CLEo/Cleo-Denmark/fromJohnEmail/COMDESResurrection/LHA/waterLevelMonitor2019/lhaWaterLevelMonitorWithNoEventsNew.pl.gx
+}
+/* entry(go__0)*/
+
+/*  go :- go__0. */
+go__0 :-
+        rState__1(_,_,_).
+go__0 :-
+        rState__2(_,_,_).
+go__0 :-
+        rState__3(_,_,_).
+go__0 :-
+        rState__4(_,_,_).
+
+/*  rState([loc_0,A,B,C]) :- rState__1(C,B,A). */
+rState__1(C,B,A) :-
+        D=<E,
+        1*F=1*G+1*(E-D),
+        1*H=1*I+ -2*(E-D),
+        F= +2,
+        J=F,
+        K=H,
+        0=<C,
+        1*A=1*J+1*(C-0),
+        1*B=1*K+1*(C-0),
+        B=< +10,
+        rState__4(D,I,G).
+rState__1(C,B,A) :-
+        0=<C,
+        1*A=1* +0+1*(C-0),
+        1*B=1* +1+1*(C-0),
+        B=< +10.
+
+/*  rState([loc_1,A,B,C]) :- rState__2(C,B,A). */
+rState__2(C,B,A) :-
+        D=<E,
+        1*_=1*F+1*(E-D),
+        1*G=1*H+1*(E-D),
+        G= +10,
+        I= +0,
+        J=G,
+        0=<C,
+        1*A=1*I+1*(C-0),
+        1*B=1*J+1*(C-0),
+        A=< +2,
+        rState__1(D,H,F).
+
+/*  rState([loc_2,A,B,C]) :- rState__3(C,B,A). */
+rState__3(C,B,A) :-
+        D=<E,
+        1*F=1*G+1*(E-D),
+        1*H=1*I+1*(E-D),
+        F= +2,
+        J=F,
+        K=H,
+        0=<C,
+        1*A=1*J+1*(C-0),
+        1*B=1*K+ -2*(C-0),
+        B>= +5,
+        rState__2(D,I,G).
+
+/*  rState([loc_3,A,B,C]) :- rState__4(C,B,A). */
+rState__4(C,B,A) :-
+        D=<E,
+        1*_=1*F+1*(E-D),
+        1*G=1*H+ -2*(E-D),
+        G= +5,
+        I= +0,
+        J=G,
+        0=<C,
+        1*A=1*I+1*(C-0),
+        1*B=1*J+ -2*(C-0),
+        A=< +2,
+        rState__3(D,H,F).
+/* Specialisation time 0.0 ms (runtime) */
