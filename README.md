@@ -121,3 +121,5 @@ testExs2019 :-
 
 5. John P Gallagher, Kim S Henriksen, Gourinath Banda, "Techniques for scaling up analyses based on pre-interpretations", International Conference on Logic Programming
 Pages 280-296, Publisher Springer, Berlin, Heidelberg. (2005)
+
+6. Michael Leuschel, Jesper Jørgensen, "Efficient Specialisation in Prolog Using the Hand-Written Compiler Generator LOGEN", Electr. Notes Theor. Comput. Sci. 30(2): 157-162. (1999)
