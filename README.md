@@ -111,10 +111,13 @@ testExs2019 :-
 ````
 # References
 
-1. WCLP 
+1. Gourinath Banda, John P Gallagher, "Analysis of linear hybrid systems in CLP", Conference Article, International Symposium on Logic-Based Program Synthesis and Transformation, Pages 55-70, Publisher Springer, Berlin, Heidelberg. (2008)
 
-2. LPAR
+2. Gourinath Banda, John P Gallagher, "Constraint-based abstract semantics for temporal logic: A direct approach to design and implementation", Conference International Conference on Logic for Programming Artificial Intelligence and Reasoning, Pages 27-45, Publisher Springer, Berlin, Heidelberg. (2010)
 
-3. LOPSTR
+3. Gourinath Banda, John P Gallagher, "Constraint-Based Abstraction of a Model Checker for Infinite State Systems", In Armin Wolf and Ulrich Geske, chairs, 23rd Workshop on (Constraint) Logic Programming, Potsdam, Germany September 15-16, Proceedings. (2009)
 
-4. LOGEN 
+4. Kim Henriksen Et. Al., "Experiments with a convex polyhedral analysis tool for logic programs", , G Banda, J Gallagher - arXiv preprint arXiv:0712.2737. (2007)
+
+5. John P Gallagher, Kim S Henriksen, Gourinath Banda, "Techniques for scaling up analyses based on pre-interpretations", International Conference on Logic Programming
+Pages 280-296, Publisher Springer, Berlin, Heidelberg. (2005)
