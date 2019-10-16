@@ -2,7 +2,7 @@
 :- module(duplVar, _).
 
 
-:- use_module(canonical).
+:- use_module(chclibs(canonical)).
 :- use_module(library(lists)).
 
 %?- writeAtomEq(p(U,U,V,U,V,W),A,Es,0,K).

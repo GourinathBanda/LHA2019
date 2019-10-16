@@ -1,8 +1,8 @@
 :- module(predExists_predForall2,_).
 
 :- use_module(appendListOfDisjs).
-:- use_module(canonical).
-:- use_module(setops).
+:- use_module(chclibs(canonical)).
+:- use_module(chclibs(setops)).
 :- use_module(input_ppl).
 :- use_module(library(terms_vars)).
 :- use_module(library(ppl)).

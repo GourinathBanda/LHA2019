@@ -7,6 +7,11 @@
 :- use_module(chclibs(yices2_sat)).  
 
 :- use_module(ciao_yices(ciao_yices_2)).
+:- use_module(library(read_from_string)).
+
+
+
+
 
 
 :- dynamic(version/3).
@@ -20,6 +25,11 @@
 %   S - set of regions where Phi holds
 
 
+main([File,VersionsFile,PredFile, Phi]) :-
+	read_from_atom(Phi,(Vars,Phi1)),
+	numbervars(Vars,0,_),
+	testId('test',File,VersionsFile,PredFile,Phi1).
+	
 go(File,VersionsFile,PredFile, Phi,S) :-
 	load_file(File,pl),
 	readVersions(VersionsFile),
@@ -254,6 +264,8 @@ disjList2Conj((C1;C2),(D1;D2)) :-
 disjList2Conj(C,D) :-
 	list2conj(C,D).
 	
+list2conj([],0=0) :-
+	!.
 list2conj([C],C) :-
 	!.
 list2conj([C|Cs],(C,Ds)) :-

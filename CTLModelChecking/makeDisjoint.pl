@@ -17,7 +17,7 @@ go(File,Regions) :-
 	ppl_initialize,
 	ppl_version(_),
 	readVersions(File),
-	findall(V,version(V,_,_), Versions),
+	findall(V,stateVersion(V,_,_), Versions),
 	makeDisjoint(Versions, Regions),
 	name(File,FileName),
 	append(FileName,".disjoint",DisjFileName),
@@ -26,6 +26,12 @@ go(File,Regions) :-
 	writeDisjointVersions(Regions,S),
 	close(S),
 	ppl_finalize.
+	
+stateVersion(V,H,C) :-
+	version(V,H,C),
+	functor(H,P,_),
+	name(P,PName),
+	append("rState",_,PName).
 
 readVersions(File) :-
 	retractall(version(_,_,_)),
@@ -65,6 +71,8 @@ consistentVersions(S,T) :-
 	numbervars((H1,C1),0,_),
 	numbervars((H2,C2),0,_),
 	append(C1,C2,C3),
+	cleanConstraint(C3,C4),
+	write(C4),nl,
 	satisfiable(C3,_).
 	
 	
@@ -165,4 +173,45 @@ writeAllRegions([(_,C)|Cs],S) :-
 	nl(S),
 	writeAllRegions(Cs,S).
 
+cleanConstraint([],[]).
+cleanConstraint([C|Cs],[C1|Cs2]) :-
+	cleanConstraint(C,C1),
+	cleanConstraint(Cs,Cs1).
+cleanConstraint(T1=T2,S1=S2) :-
+	cleanConstraint(T1,S1),
+	cleanConstraint(T2,S2).
+cleanConstraint(T1=<T2,S1=<S2) :-
+	cleanConstraint(T1,S1),
+	cleanConstraint(T2,S2).
+cleanConstraint(T1<T2,S1<S2) :-
+	cleanConstraint(T1,S1),
+	cleanConstraint(T2,S2).
+cleanConstraint(T1>=T2,S1>=S2) :-
+	cleanConstraint(T1,S1),
+	cleanConstraint(T2,S2).
+cleanConstraint(T1>T2,S1>S2) :-
+	cleanConstraint(T1,S1),
+	cleanConstraint(T2,S2).
+cleanConstraint(T1>T2,S1>S2) :-
+	cleanConstraint(T1,S1),
+	cleanConstraint(T2,S2).
+clean(+T,T1) :-
+	!,
+	clean(T,T1).
+clean(-T,-T1) :-
+	!,
+	clean(T,T1).
+clean(T,T1) :-
+	T =.. [Op,A1,A2],
+	member(Op,['+','-','*','/']),
+	!,
+	clean(A1,B1),
+	clean(A2,B2),
+	T1 =.. [Op,B1,B2].
+
+
 	
+cleanConstraint(T,T1) :-
+	constantTerm(T
+
+

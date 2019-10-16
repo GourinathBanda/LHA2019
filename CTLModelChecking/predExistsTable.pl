@@ -7,6 +7,10 @@
 :- use_module(library(lists)).
 :- use_module(predExists_predForall2).
 
+
+main([File, VersionsFile]) :-
+	go(File,VersionsFile).
+	
 go(File,VersionsFile) :-
 	atom_concat(FileNameWithPath,'.spec',File), % '+' gnb12%
 	atom_concat(FileNameWithPath,'.predExistsTable',PredTableFile), % '+' gnb12%
