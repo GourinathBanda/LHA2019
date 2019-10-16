@@ -359,10 +359,10 @@ derivative(derivative(D)) -->
 %% [derivative(rate(ident(x),num(+1))),derivative(rate(ident(w),num(+1)))]
 
 constant(num(T)) --> 
-	sign_opt(S), decimalnumber(Dn), {T =.. [S,Dn]}.
+	sign_opt(S), decimalnumber(Dn), {S=='+' -> T=Dn; T =.. [S,Dn]}.
 
 constant(num(T)) --> 
-	sign_opt(S), number(N), {T =.. [S,N]}.
+	sign_opt(S), number(N), {S=='+' -> T=N; T =.. [S,N]}.
 
 invariantstuple(Is) -->
 	lbrace, invariants(Is), rbrace.

@@ -41,13 +41,15 @@ writePrologPredicates([R|Rs],S) :-
 	writePrologPredicates(Rs,S).
 
 
-writePrologPredicates([],_).
+writePrologPredicates([],_).
+
 writePrologPredicates([R|Rs],S) :-
 	R = (H :- B),
 	write(S,H),
 	write(S,' :-'), nl(S),
 	writeBody(B,S),
-	nl(S),
+	nl(S),
+
 	writePrologPredicates(Rs,S).
 
 writeBody(C,S) :-
@@ -69,18 +71,26 @@ writeBody((C1','B),S) :-
 
 
 /*
-main(List,Predicates) :-
-	open('fileOut.pl',write,S),
-	writePrologPredicates(List,S, Predicates),
-	close(S).
-	
+main(List,Predicates) :-
 
-writePrologPredicates([],_,[]).
+	open('fileOut.pl',write,S),
+
+	writePrologPredicates(List,S, Predicates),
+
+	close(S).
+
+	
+
+
+writePrologPredicates([],_,[]).
+
 writePrologPredicates([R|Rs],S,[R,'$VAR'('.')|Predicates]) :-
 	write(S,R),
 	write(S,'.'),
-	nl(S),	
-	nl(S),
+	nl(S),	
+
+	nl(S),
+
 	writePrologPredicates(Rs,S,Predicates).
 
 */
@@ -355,10 +365,10 @@ derivative(derivative(D)) -->
 %% [derivative(rate(ident(x),num(+1))),derivative(rate(ident(w),num(+1)))]
 
 constant(num(T)) --> 
-	sign_opt(S), decimalnumber(Dn), {T =.. [S,Dn]}.
+	sign_opt(S), decimalnumber(Dn), {S=='+' -> T=Dn; T =.. [S,Dn]}.
 
 constant(num(T)) --> 
-	sign_opt(S), number(N), {T =.. [S,N]}.
+	sign_opt(S), number(N), {S=='+' -> T=N; T =.. [S,N]}.
 
 invariantstuple(Is) -->
 	lbrace, invariants(Is), rbrace.
