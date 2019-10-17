@@ -561,11 +561,11 @@ action(action(A)) -->
 /*
 action(action(A)) -->
 	identifier(I), assignOp(Ao), sign_opt(So),decimalnumber(Dn),
-	{Sdn =.. [So,Dn], A =.. [Ao,ident(I),num(Sdn)]}.
+	{(So=='+' -> Sdn = Dn; Sdn =.. [So,Dn]), A =.. [Ao,ident(I),num(Sdn)]}.
 
 action(action(A)) -->
 	identifier(I), assignOp(Ao), number(N), 
-	sign_opt(So), {Sn =.. [So,N], A =.. [Ao,ident(I),num(Sn)]}.
+	sign_opt(So), {So == '+' -> Sn=N; Sn =.. [So,N]), A =.. [Ao,ident(I),num(Sn)]}.
 */
 
 assignOp(':=') --> [(':=',_)].

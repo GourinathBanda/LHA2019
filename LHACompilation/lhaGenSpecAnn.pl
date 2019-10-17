@@ -120,7 +120,8 @@ invariantPart([LocDecl|LocDecls],VarTable,[(H :- B)|S0],S1) :-
 translateExpr(ident(V),X,Vars) :-
 	member(var(V,X,_),Vars).
 
-translateExpr(num(N),N,_).
+translateExpr(num(+N),N,_).
+translateExpr(num(-N),-N,_).
 
 translateExpr(E1+E2,F1+F2,Vars) :-
 	translateExpr(E1,F1,Vars),
@@ -189,7 +190,9 @@ translateRateExpr('$VAR'(R),'$VAR'(R),Vars) :-
 	J is R - 3*L,
 	member(var(_V,'$VAR'(J),_),Vars).
 
-translateRateExpr(num(N),N,_).
+translateRateExpr(num(+N),N,_).
+translateRateExpr(num(-N),-N,_).
+
 
 translateRateExpr(E1+E2,F1+F2,Vars) :-
 	translateRateExpr(E1,F1,Vars),
@@ -412,7 +415,8 @@ assignments([action(ident(V):=num(Val))],VarTable,[J],[Val]) :-
 */
 
 
-assignments([action(ident(V):=num(Val))|Actions],VarTable,[J|AssignedVarsIndexs],[Val|AssignedVals]) :-
+assignments([action(ident(V):=num(SVal))|Actions],VarTable,[J|AssignedVarsIndexs],[Val|AssignedVals]) :-
+	(SVal = +N -> Val=N; Val=SVal),	% check whether there is a + symbol and if so remove it
 	write('assignments called'),nl,
 	member(var(V,'$VAR'(J),_),VarTable),
 	write('member call succeeded'),nl,
@@ -484,7 +488,9 @@ negInvariantBody(locdecl(_,_,Invariants),VarTable,NegB) :-
 translateExprNeg(ident(V),X,Vars) :-
 	member(var(V,X,_),Vars).
 
-translateExprNeg(num(N),N,_).
+translateExprNeg(num(+N),N,_).
+translateExprNeg(num(-N),-N,_).
+
 
 translateExprNeg(E1+E2,F1+F2,Vars) :-
 	translateExprNeg(E1,F1,Vars),
