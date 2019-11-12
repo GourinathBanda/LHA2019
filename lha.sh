@@ -15,9 +15,9 @@ LHAFILE=`pwd`/"$1"
 
 # First generate the .spec file from the LHA specification
 
-cd "$LHA_COMPILE"
+pushd "$LHA_COMPILE"
 make --always-make -f makefileWithNoEvents_NewDriver INPUTLHAFILE="$LHAFILE"
-cd ..
+popd
 
 # Now remove all line
 
